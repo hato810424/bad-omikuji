@@ -742,6 +742,16 @@
   transform: translateY(0);
 }
 
+.feedback-message {
+  font-family: var(--sans-serif);
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 3rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
 .copyright {  
   font-family: var(--sans-serif);
   font-size: 0.8rem;

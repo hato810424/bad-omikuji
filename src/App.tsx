@@ -150,6 +150,9 @@ function App() {
         // Web Share APIがサポートされているか確認
         if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
           try {
+            const umami = (window as any).umami;
+            umami.track('share-instagram');
+
             await navigator.share({
               files: [file],
               title: '', // 空文字列にすることでInstagramストーリーズに投稿可能
@@ -233,9 +236,12 @@ function App() {
             <div className="box-content">
               <p className="box-text">おみくじを引く</p>
             </div>
-            <button className="draw-button" onClick={drawOmikuji}>
+            <button className="draw-button" onClick={drawOmikuji} data-umami-event="omikuji-draw">
               引いてみる
             </button>
+          </div>
+          <div className="feedback-message">
+            引いたことを作者に知らせてくれると嬉しいです！
           </div>
           <div className="copyright initial-screen">
             <a href='https://github.com/hato810424/bad-omikuji'>bad-omikuji</a> - Made with ❤️ by <a href='https://github.com/hato810424'>hato</a>.
