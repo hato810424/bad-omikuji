@@ -441,6 +441,7 @@
   letter-spacing: 0.5em;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
   position: relative;
+  text-align: center;
 }
 
 .result-title::before,
@@ -476,6 +477,7 @@
   animation: divine-pulse 2s infinite, text-glow 3s ease-in-out infinite;
   letter-spacing: 0.2em;
   position: relative;
+  text-align: center;
 }
 
 .result-text::before {

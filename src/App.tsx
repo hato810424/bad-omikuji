@@ -1,20 +1,7 @@
 import { useState, useRef, useEffect, useMemo } from 'react'
 import './App.css'
-import { results, luckyItems } from './data'
+import { results, luckyItems, type OmikujiData, type LuckyItem } from './data'
 import html2canvas from 'html2canvas'
-
-interface OmikujiData {
-  rank: string
-  overall: string
-  details: {
-    [key: string]: string
-  }
-}
-
-interface LuckyItem {
-  name: string
-  description: string
-}
 
 function App() {
   const [isDrawing, setIsDrawing] = useState(false)
