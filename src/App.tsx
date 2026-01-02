@@ -139,7 +139,7 @@ function App() {
       })
       
       // シェア用要素を非表示に戻す
-      shareRef.current.style.display = 'none'
+      shareRef.current.style.display = '';
 
       // Canvasをblobに変換
       canvas.toBlob(async (blob) => {
