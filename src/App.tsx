@@ -205,6 +205,7 @@ function App() {
           }} />
         ))}
       </div>
+
       {!isDrawing && <div className="title-container">
         <h1 className="title">神の導き</h1>
         {!hasDrawn && <button className="about" onClick={() => setIsAboutOpen(true)}>神の導きとは？</button>}
@@ -239,7 +240,7 @@ function App() {
           <div className="result-paper">
             <h2 className="result-title">運勢</h2>
             <div className="result-text">{currentOmikuji.rank}</div>
-            
+
             <div className="result-description">
               <div className="section">
                 <h3 className="section-title">■ 総評</h3>
@@ -273,7 +274,7 @@ function App() {
 
               <div className="god-message">
                 <p>【神様のつぶやき】</p>
-                <p>「来世に期待してください。」</p>
+                <p>「来世に期待してしなさい。」</p>
               </div>
             </div>
           </div>
