@@ -79,10 +79,17 @@
   }
 }
 
+.title-container {
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .title {
   font-size: 3rem;
   color: #ffd700;
-  margin-bottom: 3rem;
   text-shadow: 
     0 0 10px rgba(255, 215, 0, 0.8),
     0 0 20px rgba(255, 215, 0, 0.6),
@@ -119,6 +126,104 @@
 @keyframes sparkle {
   0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
   50% { opacity: 0.5; transform: translateY(-50%) scale(1.2); }
+}
+
+/* aboutボタン */
+.about {
+  margin: 0 auto;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  border: 2px solid rgba(212, 175, 55, 0.8);
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffd700;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.45);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.about:hover {
+  transform: translateY(-1px);
+  background: rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 215, 0, 0.95);
+}
+
+.about:active {
+  transform: translateY(0);
+}
+
+/* モーダル */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 10000;
+}
+
+.modal {
+  width: min(560px, 100%);
+  background: linear-gradient(135deg, #fff9e6 0%, #fffef0 100%);
+  border-radius: 12px;
+  border: 3px solid #d4af37;
+  box-shadow:
+    0 0 30px rgba(255, 215, 0, 0.35),
+    0 16px 60px rgba(0, 0, 0, 0.7),
+    inset 0 0 60px rgba(255, 215, 0, 0.12);
+  padding: 22px 20px 18px;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 2px solid rgba(212, 175, 55, 0.85);
+  background: rgba(0, 0, 0, 0.15);
+  color: #8b0000;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-title {
+  margin: 0 0 12px;
+  color: #8b0000;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 18px rgba(255, 215, 0, 0.35);
+}
+
+.modal-text {
+  margin: 0;
+  color: #2b1a1a;
+  line-height: 1.8;
+  font-weight: bold;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.modal-ok {
+  padding: 0.7rem 1.2rem;
+  border-radius: 10px;
+  border: 2px solid #d4af37;
+  background: linear-gradient(135deg, #8b0000 0%, #dc143c 50%, #8b0000 100%);
+  color: #ffd700;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 0.08em;
 }
 
 .omikuji-box {

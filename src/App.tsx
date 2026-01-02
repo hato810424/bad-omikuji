@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import './App.css'
 import { results, luckyItems } from './data'
 import html2canvas from 'html2canvas'
@@ -23,8 +23,19 @@ function App() {
   const [currentLuckyItem, setCurrentLuckyItem] = useState<LuckyItem | null>(null)
   const [debugMode, setDebugMode] = useState(false)
   const [showSharePopup, setShowSharePopup] = useState(false)
+  const [isAboutOpen, setIsAboutOpen] = useState(false)
   const shareRef = useRef<HTMLDivElement>(null)
   const shareButtonRef = useRef<HTMLButtonElement>(null)
+
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 20 }, () => ({
+        left: `${Math.random() * 100}%`,
+        animationDelay: `${Math.random() * 5}s`,
+        animationDuration: `${5 + Math.random() * 5}s`,
+      })),
+    []
+  )
   
   const drawOmikuji = () => {
     setIsDrawing(true)
@@ -100,6 +111,15 @@ function App() {
     }
   }, [hasDrawn])
 
+  useEffect(() => {
+    if (!isAboutOpen) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsAboutOpen(false)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [isAboutOpen])
+
   const shareToInstagram = async () => {
     if (!shareRef.current) return
 
@@ -165,17 +185,44 @@ function App() {
           <div className="share-popup-text">Instagramでシェア</div>
         </div>
       )}
+
+      {/* about（ジョークアプリ告知）モーダル */}
+      {isAboutOpen && (
+        <div className="modal-overlay" onClick={() => setIsAboutOpen(false)} role="presentation">
+          <div
+            className="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="about-modal-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button className="modal-close" onClick={() => setIsAboutOpen(false)} aria-label="閉じる">
+              ×
+            </button>
+            <h2 className="modal-title" id="about-modal-title">神の導きとは？</h2>
+            <p className="modal-text">
+              「神の導き」こと<a href='https://github.com/hato810424/bad-omikuji'>bad-omikuji</a>は、常に大凶が出てバカ煽り散らかされるジョークアプリです。
+            </p>
+            <div className="modal-actions">
+              <button className="modal-ok" onClick={() => setIsAboutOpen(false)}>閉じる</button>
+            </div>
+          </div>
+        </div>
+      )}
       
       <div className="particles">
-        {[...Array(20)].map((_, i) => (
+        {particles.map((style, i) => (
           <div key={i} className="particle" style={{
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`,
-            animationDuration: `${5 + Math.random() * 5}s`
+            left: style.left,
+            animationDelay: style.animationDelay,
+            animationDuration: style.animationDuration
           }} />
         ))}
       </div>
-      {!isDrawing && <h1 className="title">神の導き</h1>}
+      {!isDrawing && <div className="title-container">
+        <h1 className="title">神の導き</h1>
+        {!hasDrawn && <button className="about" onClick={() => setIsAboutOpen(true)}>神の導きとは？</button>}
+      </div>}
       
       {!hasDrawn && !isDrawing && (
         <>
@@ -184,7 +231,7 @@ function App() {
               <p className="box-text">おみくじを引く</p>
             </div>
             <button className="draw-button" onClick={drawOmikuji}>
-              引く
+              引いてみる
             </button>
           </div>
           <div className="copyright initial-screen">
