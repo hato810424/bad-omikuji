@@ -28,12 +28,28 @@ function App() {
     setIsDrawing(true)
     setHasDrawn(false)
     
-    // ランダムにおみくじを選択
-    const randomIndex = Math.floor(Math.random() * results.length)
+    // URLパラメータからインデックスを取得（デバッグ用）
+    const params = new URLSearchParams(window.location.search)
+    const debugIndex = params.get('index')
+    const debugLuckyIndex = params.get('luckyIndex')
+    
+    // ランダムにおみくじを選択（デバッグモードの場合は指定されたインデックスを使用）
+    const randomIndex = debugIndex !== null 
+      ? Math.min(Math.max(0, parseInt(debugIndex)), results.length - 1)
+      : Math.floor(Math.random() * results.length)
     const selectedOmikuji = results[randomIndex]
 
-    const randomLuckyIndex = Math.floor(Math.random() * luckyItems.length)
+    const randomLuckyIndex = debugLuckyIndex !== null
+      ? Math.min(Math.max(0, parseInt(debugLuckyIndex)), luckyItems.length - 1)
+      : Math.floor(Math.random() * luckyItems.length)
     const selectedLuckyItem = luckyItems[randomLuckyIndex]
+    
+    // デバッグ情報をコンソールに出力（開発モードのみ）
+    if (import.meta.env.DEV) {
+      console.log(`おみくじインデックス: ${randomIndex} / ${results.length - 1}`)
+      console.log(`ラッキーアイテムインデックス: ${randomLuckyIndex} / ${luckyItems.length - 1}`)
+      console.log(`デバッグURL: ${window.location.origin}${window.location.pathname}?index=${randomIndex}&luckyIndex=${randomLuckyIndex}`)
+    }
     
     // アニメーション後に結果を表示
     setTimeout(() => {
