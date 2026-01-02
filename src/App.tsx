@@ -323,7 +323,6 @@ function App() {
             </div>
 
             <div className="share-overall">
-              <h3 className="share-section-title">■ 総評</h3>
               <p className="share-section-text">{currentOmikuji.overall}</p>
             </div>
 
