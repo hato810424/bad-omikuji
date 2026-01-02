@@ -367,7 +367,7 @@
   width: 90%;
   border: 4px solid #d4af37;
   border-top: 12px solid #8b0000;
-  animation: fadeIn 0.5s ease-out;
+  animation: fadeIn 1s ease-out;
   position: relative;
   overflow-x: hidden;
 }

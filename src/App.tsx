@@ -52,7 +52,7 @@ function App() {
     setShowSharePopup(false)
   }
 
-  // スクロール監視：共有ボタンが画面外にあるときポップアップを表示（0.5秒遅延）
+  // スクロール監視：共有ボタンが画面外にあるときポップアップを表示
   useEffect(() => {
     if (!hasDrawn || !shareButtonRef.current) {
       setShowSharePopup(false)
@@ -72,10 +72,9 @@ function App() {
         }
 
         if (!isVisible) {
-          // 1秒後にポップアップを表示
           timeoutId = window.setTimeout(() => {
             setShowSharePopup(true)
-          }, 500)
+          }, 800)
         } else {
           // ボタンが見えている場合は即座に非表示
           setShowSharePopup(false)
