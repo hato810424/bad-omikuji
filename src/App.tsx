@@ -54,18 +54,34 @@ function App() {
     setShowSharePopup(false)
   }
 
-  // スクロール監視：共有ボタンが画面外にあるときポップアップを表示
+  // スクロール監視：共有ボタンが画面外にあるときポップアップを表示（1秒遅延）
   useEffect(() => {
     if (!hasDrawn || !shareButtonRef.current) {
       setShowSharePopup(false)
       return
     }
 
+    let timeoutId: number | undefined
+
     const handleScroll = () => {
       if (shareButtonRef.current) {
         const rect = shareButtonRef.current.getBoundingClientRect()
         const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight
-        setShowSharePopup(!isVisible)
+        
+        // タイマーをクリア
+        if (timeoutId) {
+          clearTimeout(timeoutId)
+        }
+
+        if (!isVisible) {
+          // 1秒後にポップアップを表示
+          timeoutId = window.setTimeout(() => {
+            setShowSharePopup(true)
+          }, 500)
+        } else {
+          // ボタンが見えている場合は即座に非表示
+          setShowSharePopup(false)
+        }
       }
     }
 
@@ -78,6 +94,9 @@ function App() {
     return () => {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleScroll)
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
     }
   }, [hasDrawn])
 
