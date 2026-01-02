@@ -188,7 +188,7 @@ function App() {
             </button>
             <h2 className="modal-title" id="about-modal-title">神の導きとは？</h2>
             <p className="modal-text">
-              「神の導き」こと<a href='https://github.com/hato810424/bad-omikuji'>bad-omikuji</a>は、常に大凶が出てバカ煽り散らかされるジョークアプリです。
+              「神の導き」<a href='https://github.com/hato810424/bad-omikuji'>bad-omikuji</a>は、常に大凶が出てバカ煽り散らかされるジョークアプリです。
             </p>
             <div className="modal-actions">
               <button className="modal-ok" onClick={() => setIsAboutOpen(false)}>閉じる</button>
