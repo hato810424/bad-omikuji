@@ -334,7 +334,7 @@ function App() {
             </div>
 
             <div className="share-watermark">
-              bad-omikuji<br />
+              bad-omikuji.pages.dev<br />
               Made with ❤️ by hato.
             </div>
           </div>
