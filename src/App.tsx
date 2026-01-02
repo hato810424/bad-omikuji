@@ -290,7 +290,7 @@ function App() {
 
               <div className="god-message">
                 <p>【神様のつぶやき】</p>
-                <p>「来世に期待してしなさい。」</p>
+                <p>「来世に期待しなさい。」</p>
               </div>
             </div>
           </div>
