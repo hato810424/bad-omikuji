@@ -741,11 +741,11 @@
 }
 
 .copyright {  
+  font-family: var(--sans-serif);
   font-size: 0.8rem;
   color: #666;
   margin-top: 2rem;
   text-align: center;
-  font-weight: bold;
   letter-spacing: 0.1em;
 }
 
@@ -1034,6 +1034,7 @@
 }
 
 .share-watermark {
+  font-family: var(--sans-serif);
   margin-top: auto;
   text-align: center;
   font-size: 1.5rem;

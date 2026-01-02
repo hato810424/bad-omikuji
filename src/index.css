@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700;800&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +7,9 @@
 }
 
 :root {
-  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --sans-serif: "Noto Sans", "Noto Sans JP", "Noto Sans KR", "Noto Naskh Arabic", "Noto Sans Thai", "Noto Sans Hebrew", "Noto Sans Bengali", sans-serif;
+  
+  font-family: 'Shippori Mincho', serif;
   line-height: 1.5;
   font-weight: 400;
 
