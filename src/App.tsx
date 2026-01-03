@@ -164,7 +164,17 @@ function App() {
             }
           }
         } else {
-          alert('この機能はお使いのブラウザではサポートされていません')
+          // Web Share APIが使えない場合は画像をダウンロード
+          const url = URL.createObjectURL(blob)
+          const a = document.createElement('a')
+          a.href = url
+          a.download = 'omikuji-result.jpg'
+          document.body.appendChild(a)
+          a.click()
+          document.body.removeChild(a)
+          URL.revokeObjectURL(url)
+          
+          alert('お使いのブラウザでは直接共有ができないため、画像をダウンロードしました。\nダウンロードした画像をInstagramアプリから投稿してください。')
         }
       }, 'image/jpeg')
     } catch (err) {
